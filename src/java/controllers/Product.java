@@ -19,7 +19,10 @@ public class Product extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         if(productService == null) productService = new ProductService();
 //        int result = productService.insert(new models.Product("Swiss Army Knife", 20, 1));
-        int result = productService.update(new models.Product("Screwdriver", 50, 1), 4);
+//        int result = productService.update(new models.Product("Screwdriver", 50, 1), 4);
+//        int result = productService.update(new models.Product("smart watch", 80, 2), "smart watch");
+//        int result = productService.update(new models.Product("Fixit all", 187.65, 3), 187.65);
+        int result = productService.update(new models.Product("smart watch elite", 75, 2), 2);
         try {
             //        super.doGet(req, resp); // 405 - HttpServlet does not implement doGet
             showHtml("<p>Inserted Records for Product: " + result, resp);

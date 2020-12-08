@@ -63,18 +63,78 @@ public class ProductDao extends Database implements IProductDao{
     }
 
     @Override
-    public int update(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int update(Product product, String name, String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("UPDATE ");
+        sb.append(tableName);
+        sb.append(" SET");
+        sb.append(" price = ");
+        sb.append("\""); sb.append(product.getPrice()); sb.append("\""); sb.append(",");
+        sb.append(" quantity = ");
+        sb.append("\""); sb.append(product.getQuantity()); sb.append("\""); 
+        sb.append(" WHERE name = ");
+        sb.append("\""); sb.append(product.getName()); sb.append("\""); 
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            result = statement.executeUpdate(sb.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return (result); 
     }
 
     @Override
-    public int update(double price) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int update(Product product, double price, String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("UPDATE ");
+        sb.append(tableName);
+        sb.append(" SET");
+        sb.append(" name = ");
+        sb.append("\""); sb.append(product.getName()); sb.append("\""); sb.append(",");
+        sb.append(" quantity = ");
+        sb.append("\""); sb.append(product.getQuantity()); sb.append("\""); 
+        sb.append(" WHERE price = ");
+        sb.append(product.getPrice());
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            result = statement.executeUpdate(sb.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return (result);
     }
 
     @Override
-    public int updateQuantity(int quantity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int updateQuantity(Product product, int quantity, String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("UPDATE ");
+        sb.append(tableName);
+        sb.append(" SET");
+        sb.append(" name = ");
+        sb.append("\""); sb.append(product.getName()); sb.append("\""); sb.append(",");
+        sb.append(" price = ");
+        sb.append("\""); sb.append(product.getPrice()); sb.append("\""); 
+        sb.append(" WHERE quantity = ");
+        sb.append(product.getQuantity());
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            result = statement.executeUpdate(sb.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return (result);
     }
 
     @Override
