@@ -10,7 +10,7 @@ public class ProductService implements IProductService{
     @Override
     public int insert(Product product) {
         if(productDao == null) productDao = new ProductDao();
-        return (productDao.insertProduct(product, "products"));
+        return (productDao.insert(product, "products"));
     }
 
     @Override

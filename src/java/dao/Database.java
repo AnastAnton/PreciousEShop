@@ -43,37 +43,7 @@ public class Database {
             System.out.println("Connection is not established");
         }
     }
-    
-    // INSERT, UPDATE, DELETE <--- int result (posa insert ekana, posa updte ekana, posa delete ekana)
-    // SELECT                 <--- ResultSet
-    // insert into customers
-    
-    
-    public int insertProduct(Product p, String tableName){
-        // INSERT INTO `products` (name, price, quantity)
-        // VALUES ("Fixit kit", "187,65", "1")
-        int result = 0;
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("INSERT INTO ");
-        sb.append(tableName);                                                  
-        sb.append("(name, price, quantity) ");
-        sb.append("VALUES(");
-        sb.append("\""); sb.append(p.getName()); sb.append("\""); sb.append(",");
-        sb.append("\""); sb.append(p.getPrice()); sb.append("\""); sb.append(",");
-        sb.append("\""); sb.append(p.getQuantity()); sb.append("\""); 
-        sb.append(")");
-        try {
-            //        System.out.println(sb.toString());
-            statement = con.createStatement();
-            result = statement.executeUpdate(sb.toString());
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return (result);
-    }
-    
+ 
 //    public int insertOrder (Scanner sc){
 //        int result = 0;
 //        
