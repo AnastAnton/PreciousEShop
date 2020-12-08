@@ -18,10 +18,13 @@ public class Product extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         if(productService == null) productService = new ProductService();
-        int result = productService.insert(new models.Product("Swiss Army Knife", 20, 1));
+//        int result = productService.insert(new models.Product("Swiss Army Knife", 20, 1));
+        int result = productService.update(new models.Product("Screwdriver", 50, 1), 4);
         try {
             //        super.doGet(req, resp); // 405 - HttpServlet does not implement doGet
-            showHtml("<p>Inserted Records for Customer: " + result, resp);
+            showHtml("<p>Inserted Records for Product: " + result, resp);
+            showHtml("<p>Updated Records for Customer: " + result, resp);
+            
         } catch (IOException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -14,8 +14,9 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public int update(int productId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int update(Product product, int productId) {
+        if(productDao == null) productDao = new ProductDao();
+        return (productDao.update(product, productId, "products"));
     }
 
     @Override
