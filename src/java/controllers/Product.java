@@ -22,7 +22,8 @@ public class Product extends HttpServlet{
 //        int result = productService.update(new models.Product("Screwdriver", 50, 1), 4);
 //        int result = productService.update(new models.Product("smart watch", 80, 2), "smart watch");
 //        int result = productService.update(new models.Product("Fixit all", 187.65, 3), 187.65);
-        int result = productService.update(new models.Product("smart watch elite", 75, 2), 2);
+//        int result = productService.update(new models.Product("smart watch elite", 75, 2), 2);
+        int result = productService.delete(5);
         try {
             //        super.doGet(req, resp); // 405 - HttpServlet does not implement doGet
             showHtml("<p>Inserted Records for Product: " + result, resp);

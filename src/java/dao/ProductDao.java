@@ -138,9 +138,23 @@ public class ProductDao extends Database implements IProductDao{
     }
 
     @Override
-    public int delete(int productId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int delete(int productId, String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("DELETE FROM ");
+        sb.append(tableName);
+        sb.append(" WHERE ID = ");
+        sb.append(productId);
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            result = statement.executeUpdate(sb.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     return (result);    }
 
     @Override
     public List<Product> all() {
