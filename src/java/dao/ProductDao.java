@@ -162,7 +162,7 @@ public class ProductDao extends Database implements IProductDao{
         if(db == null) db = new Database();
         int result = 0;
         StringBuilder sb = new StringBuilder();
-        Product product = new Product();
+        Product product;
         List<Product> products = new ArrayList();
         
         try {
@@ -170,10 +170,7 @@ public class ProductDao extends Database implements IProductDao{
             statement = con.createStatement();
             rs = statement.executeQuery("SELECT * FROM " + tableName);
             while(rs.next()){
-                product.setName(rs.getString("name"));
-                product.setPrice(rs.getDouble("price"));
-                product.setQuantity(rs.getInt("quantity"));
-                products.add(product);
+                products.add(new Product(rs.getString("name"), rs.getDouble("price"), rs.getInt("quantity")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,7 +188,7 @@ public class ProductDao extends Database implements IProductDao{
         try {
             //        System.out.println(sb.toString());
             statement = con.createStatement();
-            rs = statement.executeQuery("SELECT * FROM " + tableName + "WHERE id = " + id);
+            rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE id = " + id);
             product.setName(rs.getString("name"));
             product.setPrice(rs.getDouble("price"));
             product.setQuantity(rs.getInt("quantity"));

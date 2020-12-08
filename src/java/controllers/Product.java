@@ -31,8 +31,8 @@ public class Product extends HttpServlet{
             //        super.doGet(req, resp); // 405 - HttpServlet does not implement doGet
 //            showHtml("<p>Inserted Records for Product: " + result, resp);
 //            showHtml("<p>Updated Records for Customer: " + result, resp);
-//            showAllHtml(productService.all(), resp);
-            showOneHtml(productService.getProductById(2), resp);
+            showAllHtml(productService.all(), resp);
+//            showOneHtml(productService.getProductById(2), resp);
             
         } catch (IOException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
