@@ -11,8 +11,8 @@ public interface IProductDao {
     public int update(Product product, double price, String tableName);
     public int updateQuantity(Product product, int quantity, String tableName);
     public int delete (int productId, String tableName);
-    public List<Product> all();
-    public Product getProductById(int id);
+    public List<Product> all(String tableName);
+    public Product getProductById(int id, String tableName);
     
     
 

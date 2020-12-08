@@ -45,14 +45,15 @@ public class ProductService implements IProductService{
 
     @Override
     public List<Product> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(productDao == null) productDao = new ProductDao();
+        return (productDao.all("products"));
     }
 
     @Override
     public Product getProductById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(productDao == null) productDao = new ProductDao();
+        return (productDao.getProductById(id, "products"));    
     }
-    
 
 
 

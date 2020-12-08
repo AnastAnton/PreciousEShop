@@ -2,6 +2,7 @@ package dao;
 
 import static dao.Database.con;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -157,13 +158,48 @@ public class ProductDao extends Database implements IProductDao{
      return (result);    }
 
     @Override
-    public List<Product> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Product> all(String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        Product product = new Product();
+        List<Product> products = new ArrayList();
+        
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            rs = statement.executeQuery("SELECT * FROM " + tableName);
+            while(rs.next()){
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setQuantity(rs.getInt("quantity"));
+                products.add(product);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return(products);
     }
 
     @Override
-    public Product getProductById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product getProductById(int id, String tableName) {
+        if(db == null) db = new Database();
+        int result = 0;
+        StringBuilder sb = new StringBuilder();
+        Product product = new Product();
+        
+        try {
+            //        System.out.println(sb.toString());
+            statement = con.createStatement();
+            rs = statement.executeQuery("SELECT * FROM " + tableName + "WHERE id = " + id);
+            product.setName(rs.getString("name"));
+            product.setPrice(rs.getDouble("price"));
+            product.setQuantity(rs.getInt("quantity"));
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return(product);
     }
 
 }
