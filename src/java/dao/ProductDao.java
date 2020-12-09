@@ -181,8 +181,6 @@ public class ProductDao extends Database implements IProductDao{
     @Override
     public Product getProductById(int id, String tableName) {
         if(db == null) db = new Database();
-        int result = 0;
-        StringBuilder sb = new StringBuilder();
         Product product = new Product();
         
         try {
